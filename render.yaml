@@ -59,3 +59,10 @@ services:
     dockerfilePath: ./enquete-client-frontend--/Dockerfile
     dockerContext: ./enquete-client-frontend--
     healthCheckPath: /
+
+  - type: web
+    name: afriland-enquetes-embed-test
+    runtime: docker
+    dockerfilePath: ./embed-test-site/Dockerfile
+    dockerContext: ./embed-test-site
+    healthCheckPath: /
