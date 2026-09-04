@@ -19,6 +19,38 @@ const dateFormatter = new Intl.DateTimeFormat('fr-FR', { day: '2-digit', month: 
 const timeFormatter = new Intl.DateTimeFormat('fr-FR', { hour: '2-digit', minute: '2-digit' })
 const formatDate = (value: string) => dateFormatter.format(new Date(value))
 const formatTime = (value: string) => timeFormatter.format(new Date(value))
+const createEmbedCode = (survey: Survey) => {
+    const surveyUrl = `${window.location.origin}/survey/${survey.publicKey}`
+    const title = JSON.stringify(survey.title)
+    const url = JSON.stringify(surveyUrl)
+    return `<script>
+(function () {
+  var delay = 3000 + Math.floor(Math.random() * 7001);
+  window.setTimeout(function () {
+    var overlay = document.createElement('div');
+    overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:2147483647;display:flex;align-items:flex-end;justify-content:flex-end;padding:20px;box-sizing:border-box';
+    var panel = document.createElement('div');
+    panel.style.cssText = 'position:relative;width:min(430px,100%);height:min(700px,calc(100vh - 40px));background:#fff;border-radius:16px;box-shadow:0 12px 40px rgba(0,0,0,.25);overflow:hidden';
+    var close = document.createElement('button');
+    close.type = 'button';
+    close.textContent = '×';
+    close.setAttribute('aria-label', 'Fermer le questionnaire');
+    close.style.cssText = 'position:absolute;right:8px;top:6px;z-index:1;border:0;background:#fff;border-radius:50%;font-size:26px;line-height:32px;width:34px;height:34px;cursor:pointer';
+    var frame = document.createElement('iframe');
+    frame.src = ${url};
+    frame.title = ${title};
+    frame.style.cssText = 'width:100%;height:100%;border:0';
+    frame.setAttribute('allow', 'clipboard-write');
+    close.onclick = function () { overlay.remove(); };
+    overlay.onclick = function (event) { if (event.target === overlay) overlay.remove(); };
+    panel.appendChild(close);
+    panel.appendChild(frame);
+    overlay.appendChild(panel);
+    document.body.appendChild(overlay);
+  }, delay);
+}());
+</script>`
+}
 
 export default function SurveysPage() {
     const nav = useNavigate()
@@ -134,7 +166,7 @@ export default function SurveysPage() {
     }
 
     async function copyEmbedCode(survey: Survey) {
-        const code = `<iframe src="${window.location.origin}/survey/${survey.publicKey}" title="${survey.title.replace(/"/g, '&quot;')}" width="100%" height="700" frameborder="0"></iframe>`
+        const code = createEmbedCode(survey)
         try {
             await navigator.clipboard.writeText(code)
             setError('')
@@ -203,7 +235,7 @@ export default function SurveysPage() {
                                     </div>
                                     {emailSurveyId === survey.id && <div className="email-share-form"><input type="text" value={emailRecipient} onChange={event => setEmailRecipient(event.target.value)} onKeyDown={event => { if (event.key === 'Enter') void sendByEmail(survey) }} placeholder="email1@exemple.com, email2@exemple.com" autoFocus /><button className="btn btn-primary" disabled={emailBusy} onClick={() => void sendByEmail(survey)}>{emailBusy ? 'Envoi…' : 'Envoyer'}</button></div>}
                                     {emailSentId === survey.id && <span className="email-sent"><Icon name="check" /> Email envoyé</span>}
-                                    {embedId === survey.id && <div className="embed-share-form"><label>Code à coller dans votre site</label><textarea readOnly value={`<iframe src="${window.location.origin}/survey/${survey.publicKey}" title="${survey.title.replace(/"/g, '&quot;')}" width="100%" height="700" frameborder="0"></iframe>`} onFocus={event => event.currentTarget.select()} /><button className="btn btn-primary" onClick={() => void copyEmbedCode(survey)}><Icon name="copy" /> Copier le code</button></div>}
+                                    {embedId === survey.id && <div className="embed-share-form"><label>Code à coller dans votre site (apparition automatique après 3 à 10 secondes)</label><textarea readOnly value={createEmbedCode(survey)} onFocus={event => event.currentTarget.select()} /><button className="btn btn-primary" onClick={() => void copyEmbedCode(survey)}><Icon name="copy" /> Copier le code</button></div>}
                                 </td>
                             </tr>
                         ))}
