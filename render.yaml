@@ -1,0 +1,61 @@
+databases:
+  - name: afriland-enquetes-db
+    databaseName: enquete_db
+    user: enquete_user
+    plan: free
+
+services:
+  - type: web
+    name: afriland-enquetes-backend
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /api/health
+    envVars:
+      - key: DATABASE_HOST
+        fromDatabase:
+          name: afriland-enquetes-db
+          property: host
+      - key: DATABASE_PORT
+        fromDatabase:
+          name: afriland-enquetes-db
+          property: port
+      - key: DATABASE_NAME
+        fromDatabase:
+          name: afriland-enquetes-db
+          property: database
+      - key: DATABASE_USERNAME
+        fromDatabase:
+          name: afriland-enquetes-db
+          property: user
+      - key: DATABASE_PASSWORD
+        fromDatabase:
+          name: afriland-enquetes-db
+          property: password
+      - key: FRONTEND_URL
+        value: https://afriland-enquetes-frontend.onrender.com
+      - key: APP_ENV
+        value: production
+      - key: JPA_DDL_AUTO
+        value: update
+      - key: SESSION_COOKIE_SECURE
+        value: "true"
+      - key: SESSION_COOKIE_SAME_SITE
+        value: none
+      - key: GOOGLE_CLIENT_ID
+        sync: false
+      - key: GOOGLE_CLIENT_SECRET
+        sync: false
+      - key: MAIL_USERNAME
+        sync: false
+      - key: MAIL_PASSWORD
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false
+
+  - type: web
+    name: afriland-enquetes-frontend
+    runtime: docker
+    dockerfilePath: ./enquete-client-frontend--/Dockerfile
+    dockerContext: ./enquete-client-frontend--
+    healthCheckPath: /

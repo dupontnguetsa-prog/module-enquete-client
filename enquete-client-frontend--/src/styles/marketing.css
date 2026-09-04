@@ -1,0 +1,1207 @@
+
+:root {
+    --home-red: #cf0a2c;
+    --home-red-dark: #aa0825;
+    --home-black: #090909;
+    --home-ink: #121212;
+    --home-muted: #646a73;
+    --home-border: rgba(10, 10, 10, 0.1);
+    --home-shadow: 0 30px 80px rgba(0, 0, 0, 0.14);
+}
+
+/* =========================================================
+   PAGE D'ACCUEIL
+   ========================================================= */
+
+.marketing-home {
+    position: relative;
+    min-height: 100vh;
+    background: #f7f7f5;
+    color: var(--home-ink);
+    overflow-x: hidden;
+}
+
+/* =========================================================
+   ARRIÈRE-PLAN PHOTO AFRILAND — HERO
+   ========================================================= */
+
+.marketing-home__hero {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+.marketing-home__hero-background {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.marketing-home__hero-background-image {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+    object-position: center center;
+
+    transform: none !important;
+    animation: none !important;
+}
+
+.marketing-home__hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+
+    background:
+            linear-gradient(
+                    90deg,
+                    rgba(247, 247, 245, 0.90) 0%,
+                    rgba(247, 247, 245, 0.78) 28%,
+                    rgba(247, 247, 245, 0.46) 55%,
+                    rgba(247, 247, 245, 0.16) 78%,
+                    rgba(247, 247, 245, 0.04) 100%
+            );
+}
+
+/* =========================================================
+   MODE SOMBRE
+   ========================================================= */
+
+.marketing-home--dark {
+    background: #080808;
+    color: #f6f6f6;
+}
+
+.marketing-home--dark .marketing-home__hero-background-image {
+    filter: brightness(0.60) saturate(0.82) contrast(0.96);
+}
+
+.marketing-home--dark .marketing-home__hero-overlay {
+    background:
+            linear-gradient(
+                    90deg,
+                    rgba(8, 8, 8, 0.90) 0%,
+                    rgba(8, 8, 8, 0.76) 30%,
+                    rgba(8, 8, 8, 0.46) 58%,
+                    rgba(8, 8, 8, 0.15) 80%,
+                    rgba(8, 8, 8, 0.04) 100%
+            );
+}
+
+/* =========================================================
+   CALQUES PRINCIPAUX
+   ========================================================= */
+
+.marketing-home__nav,
+.marketing-section,
+.marketing-security,
+.marketing-home__footer {
+    position: relative;
+    z-index: 2;
+}
+
+.marketing-home__hero-copy,
+.marketing-home__visual {
+    position: relative;
+    z-index: 2;
+}
+
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
+
+.marketing-home__nav {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+
+    padding: 18px 5vw;
+
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+
+    background: rgba(255, 255, 255, 0.86);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+}
+
+.marketing-home--dark .marketing-home__nav {
+    background: rgba(8, 8, 8, 0.82);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.marketing-home__brand {
+    border: 0;
+    background: transparent;
+
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    padding: 0;
+
+    cursor: pointer;
+    color: inherit;
+    text-align: left;
+}
+
+.marketing-home__brand img {
+    width: 178px;
+    height: auto;
+    max-height: 58px;
+
+    display: block;
+
+    object-fit: contain;
+    object-position: left center;
+}
+
+.marketing-home__brand span {
+    display: grid;
+    gap: 2px;
+}
+
+.marketing-home__brand strong {
+    font-size: 15px;
+    line-height: 1.2;
+}
+
+.marketing-home__brand small {
+    font-size: 11px;
+    color: var(--home-muted);
+}
+
+.marketing-home--dark .marketing-home__brand small {
+    color: #b8bec7;
+}
+
+/* =========================================================
+   LIENS
+   ========================================================= */
+
+.marketing-home__links {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+
+    margin-left: auto;
+}
+
+.marketing-home__links a,
+.marketing-home__links button {
+    font: inherit;
+    font-size: 13px;
+    font-weight: 700;
+
+    text-decoration: none;
+
+    color: inherit;
+
+    border: 0;
+    background: none;
+
+    cursor: pointer;
+
+    padding: 10px 0;
+
+    transition:
+            color 0.2s ease,
+            transform 0.2s ease;
+}
+
+.marketing-home__links a:hover,
+.marketing-home__links button:hover {
+    color: var(--home-red);
+    transform: translateY(-1px);
+}
+
+/* =========================================================
+   BOUTONS
+   ========================================================= */
+
+.marketing-home__actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.marketing-button,
+.marketing-icon-button {
+    font: inherit;
+    font-weight: 800;
+
+    border-radius: 13px;
+    border: 1px solid var(--home-border);
+
+    padding: 12px 18px;
+
+    cursor: pointer;
+
+    transition:
+            transform 0.25s ease,
+            box-shadow 0.25s ease,
+            background 0.25s ease,
+            border-color 0.25s ease;
+}
+
+.marketing-button:hover,
+.marketing-icon-button:hover {
+    transform: translateY(-2px);
+}
+
+.marketing-button--primary {
+    background: var(--home-red);
+    border-color: var(--home-red);
+    color: white;
+
+    box-shadow:
+            0 10px 26px rgba(207, 10, 44, 0.22);
+}
+
+.marketing-button--primary:hover {
+    box-shadow:
+            0 15px 34px rgba(207, 10, 44, 0.3);
+}
+
+.marketing-button--ghost {
+    background: transparent;
+    color: inherit;
+}
+
+.marketing-button--light {
+    background: white;
+    color: #111;
+
+    border-color: rgba(0, 0, 0, 0.12);
+}
+
+.marketing-icon-button {
+    width: 42px;
+    height: 42px;
+
+    padding: 0;
+
+    background: rgba(255, 255, 255, 0.72);
+
+    color: #111;
+}
+
+.marketing-home--dark .marketing-icon-button {
+    background: #111;
+    color: white;
+    border-color: #2a2a2a;
+}
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.marketing-home__hero {
+    max-width: 1400px;
+    margin: 0 auto;
+
+    padding: 92px 5vw 115px;
+
+    display: grid;
+
+    grid-template-columns: 1.02fr 0.98fr;
+
+    align-items: center;
+
+    gap: 80px;
+
+    min-height: 730px;
+}
+
+.marketing-eyebrow {
+    font-size: 12px;
+    font-weight: 900;
+
+    letter-spacing: 0.16em;
+
+    color: var(--home-red);
+}
+
+.marketing-home__hero h1 {
+    font-size: clamp(48px, 6vw, 84px);
+
+    line-height: 0.98;
+
+    letter-spacing: -0.045em;
+
+    margin: 18px 0 24px;
+
+    max-width: 850px;
+}
+
+.marketing-home__hero h1 span {
+    color: var(--home-red);
+}
+
+.marketing-home__hero-copy > p {
+    max-width: 690px;
+
+    color: #5d6570;
+
+    font-size: 19px;
+
+    line-height: 1.7;
+}
+
+.marketing-home--dark .marketing-home__hero-copy > p {
+    color: #c2c5ca;
+}
+
+.marketing-home__hero-actions {
+    display: flex;
+
+    gap: 12px;
+
+    flex-wrap: wrap;
+
+    margin-top: 34px;
+}
+
+.marketing-button--large {
+    padding: 16px 21px;
+
+    border-radius: 15px;
+
+    font-size: 15px;
+}
+
+.marketing-home__trust {
+    display: flex;
+
+    gap: 23px;
+
+    flex-wrap: wrap;
+
+    margin-top: 26px;
+
+    color: #67707a;
+
+    font-size: 12px;
+
+    font-weight: 800;
+}
+
+.marketing-home--dark .marketing-home__trust {
+    color: #b9bec4;
+}
+
+/* =========================================================
+   VISUEL
+   ========================================================= */
+
+.marketing-home__visual {
+    position: relative;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    min-height: 560px;
+}
+
+/* =========================================================
+   CARTE DE DÉMONSTRATION
+   ========================================================= */
+
+.marketing-device {
+    width: min(590px, 100%);
+
+    background: rgba(255, 255, 255, 0.96);
+
+    border: 11px solid #151515;
+
+    border-radius: 31px;
+
+    box-shadow: var(--home-shadow);
+
+    overflow: hidden;
+
+    transform: rotate(-2deg);
+
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
+}
+
+.marketing-home--dark .marketing-device {
+    background: rgba(17, 17, 17, 0.95);
+
+    border-color: #f0f0f0;
+}
+
+.marketing-device__header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 18px 20px;
+
+    border-bottom: 1px solid #e8e8e8;
+}
+
+.marketing-device__header > div {
+    display: grid;
+
+    gap: 5px;
+}
+
+.marketing-device__header small {
+    font-size: 9px;
+
+    font-weight: 900;
+
+    letter-spacing: 0.12em;
+}
+
+.marketing-device__header strong {
+    font-size: 14px;
+}
+
+.marketing-device__header span {
+    font-size: 10px;
+
+    font-weight: 900;
+
+    color: #008b4e;
+}
+
+.marketing-device__body {
+    padding: 26px;
+}
+
+.marketing-score small {
+    display: block;
+
+    color: #777;
+
+    margin-bottom: 5px;
+}
+
+.marketing-score strong {
+    font-size: 58px;
+
+    letter-spacing: -0.04em;
+}
+
+.marketing-score strong span {
+    font-size: 19px;
+
+    color: #888;
+}
+
+.marketing-chart {
+    height: 145px;
+
+    display: flex;
+
+    align-items: flex-end;
+
+    gap: 12px;
+
+    margin: 25px 0;
+}
+
+.marketing-chart i {
+    display: block;
+
+    flex: 1;
+
+    border-radius: 7px 7px 2px 2px;
+
+    background:
+            linear-gradient(
+                    180deg,
+                    var(--home-red),
+                    #f07c91
+            );
+
+    min-height: 28px;
+}
+
+.marketing-chart i:nth-child(1) {
+    height: 38%;
+}
+
+.marketing-chart i:nth-child(2) {
+    height: 51%;
+}
+
+.marketing-chart i:nth-child(3) {
+    height: 45%;
+}
+
+.marketing-chart i:nth-child(4) {
+    height: 67%;
+}
+
+.marketing-chart i:nth-child(5) {
+    height: 59%;
+}
+
+.marketing-chart i:nth-child(6) {
+    height: 81%;
+}
+
+.marketing-chart i:nth-child(7) {
+    height: 72%;
+}
+
+.marketing-chart i:nth-child(8) {
+    height: 94%;
+}
+
+.marketing-device__stats {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 10px;
+}
+
+.marketing-device__stats div {
+    padding: 14px;
+
+    background: #f6f6f6;
+
+    border-radius: 12px;
+}
+
+.marketing-home--dark .marketing-device__stats div {
+    background: #1a1a1a;
+}
+
+.marketing-device__stats strong,
+.marketing-device__stats span {
+    display: block;
+}
+
+.marketing-device__stats strong {
+    font-size: 21px;
+}
+
+.marketing-device__stats span {
+    font-size: 10px;
+
+    color: #777;
+
+    margin-top: 4px;
+}
+
+/* =========================================================
+   CARTES FLOTTANTES
+   ========================================================= */
+
+.marketing-floating-card {
+    position: absolute;
+
+    background: rgba(255, 255, 255, 0.96);
+
+    border-radius: 17px;
+
+    padding: 18px 20px;
+
+    box-shadow:
+            0 20px 50px rgba(0, 0, 0, 0.16);
+
+    display: grid;
+
+    gap: 4px;
+
+    z-index: 3;
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.marketing-home--dark .marketing-floating-card {
+    background: rgba(21, 21, 21, 0.96);
+
+    color: white;
+}
+
+.marketing-floating-card small {
+    color: #7d8287;
+
+    font-size: 10px;
+}
+
+.marketing-floating-card strong {
+    font-size: 29px;
+}
+
+.marketing-floating-card span {
+    color: #008b4e;
+
+    font-size: 11px;
+
+    font-weight: 900;
+}
+
+.marketing-floating-card--top {
+    top: 34px;
+
+    left: -16px;
+}
+
+.marketing-floating-card--bottom {
+    right: -12px;
+
+    bottom: 32px;
+}
+
+/* =========================================================
+   SECTIONS
+   ========================================================= */
+
+.marketing-section {
+    padding: 100px 5vw;
+}
+
+.marketing-section--white {
+    background: rgba(255, 255, 255, 0.97);
+}
+
+.marketing-home--dark .marketing-section--white {
+    background: #0d0d0d;
+}
+
+.marketing-section--dark {
+    background: #0a0a0a;
+
+    color: white;
+}
+
+.marketing-section__inner {
+    max-width: 1240px;
+
+    margin: 0 auto;
+}
+
+.marketing-section__inner h2 {
+    font-size: clamp(37px, 4.3vw, 62px);
+
+    line-height: 1.03;
+
+    letter-spacing: -0.035em;
+
+    max-width: 860px;
+
+    margin: 16px 0;
+}
+
+.marketing-section__lead {
+    font-size: 17px;
+
+    line-height: 1.7;
+
+    color: #69717b;
+
+    max-width: 740px;
+}
+
+.marketing-section--dark .marketing-section__lead {
+    color: #a7adb3;
+}
+
+/* =========================================================
+   FEATURES
+   ========================================================= */
+
+.marketing-feature-grid {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 16px;
+
+    margin-top: 42px;
+}
+
+.marketing-feature-grid article {
+    border: 1px solid var(--home-border);
+
+    border-radius: 20px;
+
+    padding: 28px;
+
+    background: #fff;
+}
+
+.marketing-home--dark .marketing-feature-grid article {
+    background: #131313;
+
+    border-color: #2a2a2a;
+}
+
+.marketing-feature-grid b,
+.marketing-flow-card span {
+    color: var(--home-red);
+
+    font-size: 12px;
+
+    font-weight: 900;
+}
+
+.marketing-feature-grid h3 {
+    font-size: 25px;
+
+    margin: 28px 0 10px;
+}
+
+.marketing-feature-grid p {
+    color: #6e747c;
+
+    line-height: 1.6;
+
+    font-size: 14px;
+}
+
+/* =========================================================
+   PARCOURS
+   ========================================================= */
+
+.marketing-section__inner--split {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 70px;
+
+    align-items: center;
+}
+
+.marketing-flow-card {
+    display: grid;
+
+    gap: 10px;
+}
+
+.marketing-flow-card div {
+    display: grid;
+
+    grid-template-columns: 44px 1fr auto;
+
+    align-items: center;
+
+    gap: 14px;
+
+    border: 1px solid #2a2a2a;
+
+    border-radius: 14px;
+
+    padding: 15px 17px;
+
+    background: #111;
+}
+
+.marketing-flow-card strong {
+    font-size: 14px;
+}
+
+.marketing-flow-card small {
+    color: #8f969d;
+
+    font-size: 11px;
+}
+
+/* =========================================================
+   ANALYSES
+   ========================================================= */
+
+.marketing-analysis {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 70px;
+
+    align-items: center;
+}
+
+.marketing-kpi-grid {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 12px;
+}
+
+.marketing-kpi-grid article {
+    background: #f6f6f6;
+
+    border-radius: 18px;
+
+    padding: 22px;
+}
+
+.marketing-home--dark .marketing-kpi-grid article {
+    background: #161616;
+}
+
+.marketing-kpi-grid small,
+.marketing-kpi-grid span {
+    display: block;
+
+    color: #727a81;
+
+    font-size: 11px;
+}
+
+.marketing-kpi-grid strong {
+    display: block;
+
+    font-size: 31px;
+
+    margin: 13px 0 7px;
+}
+
+.marketing-kpi-grid span {
+    color: #008b4e;
+
+    font-weight: 900;
+}
+
+/* =========================================================
+   SÉCURITÉ
+   ========================================================= */
+
+.marketing-security {
+    background: #f4f4f2;
+}
+
+.marketing-home--dark .marketing-security {
+    background: #121212;
+}
+
+.marketing-security__inner {
+    display: grid;
+
+    grid-template-columns: 1fr auto;
+
+    gap: 60px;
+
+    align-items: center;
+}
+
+.marketing-security h2 {
+    font-size: clamp(35px, 4vw, 56px);
+
+    margin: 16px 0 10px;
+}
+
+.marketing-security p {
+    color: #69717a;
+
+    line-height: 1.7;
+
+    max-width: 650px;
+}
+
+.marketing-home--dark .marketing-security p {
+    color: #afb5bb;
+}
+
+.marketing-security__badge {
+    border: 1px solid rgba(207, 10, 44, 0.25);
+
+    background: #fff0f2;
+
+    color: #24151a;
+
+    border-radius: 20px;
+
+    padding: 22px 26px;
+
+    line-height: 2;
+
+    font-weight: 900;
+
+    font-size: 13px;
+}
+
+.marketing-home--dark .marketing-security__badge {
+    background: #1a0e11;
+
+    color: #fff;
+}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.marketing-home__footer {
+    display: flex;
+
+    align-items: center;
+
+    gap: 16px;
+
+    padding: 28px 5vw;
+
+    background: #fff;
+
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.marketing-home--dark .marketing-home__footer {
+    background: #080808;
+
+    border-color: #242424;
+}
+
+.marketing-home__footer img {
+    width: 145px;
+
+    height: auto;
+
+    object-fit: contain;
+}
+
+.marketing-home__footer span {
+    font-size: 13px;
+
+    font-weight: 800;
+}
+
+.marketing-home__footer small {
+    margin-left: auto;
+
+    color: #7c8389;
+
+    font-size: 11px;
+}
+
+/* =========================================================
+   TABLETTE
+   ========================================================= */
+
+@media (max-width: 1050px) {
+    .marketing-home__links {
+        display: none;
+    }
+
+    .marketing-home__hero {
+        grid-template-columns: 1fr;
+
+        gap: 30px;
+    }
+
+    .marketing-home__visual {
+        min-height: 500px;
+    }
+
+    .marketing-home__hero-overlay {
+        background:
+                linear-gradient(
+                        90deg,
+                        rgba(247, 247, 245, 0.92) 0%,
+                        rgba(247, 247, 245, 0.78) 28%,
+                        rgba(247, 247, 245, 0.44) 56%,
+                        rgba(247, 247, 245, 0.13) 80%,
+                        rgba(247, 247, 245, 0.03) 100%
+                );
+    }
+
+    .marketing-feature-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .marketing-section__inner--split,
+    .marketing-analysis,
+    .marketing-security__inner {
+        grid-template-columns: 1fr;
+    }
+
+    .marketing-kpi-grid {
+        max-width: 700px;
+    }
+
+    .marketing-home__nav {
+        padding: 16px 4vw;
+    }
+
+    .marketing-home__hero,
+    .marketing-section {
+        padding-left: 4vw;
+
+        padding-right: 4vw;
+    }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 650px) {
+    .marketing-home__hero {
+        min-height: 760px;
+        padding-top: 64px;
+        padding-bottom: 80px;
+    }
+
+    .marketing-home__hero-background-image {
+        object-position: 62% center;
+        filter: saturate(0.92) contrast(1.04) brightness(0.92);
+    }
+
+    .marketing-home__nav {
+        flex-wrap: wrap;
+        gap: 12px;
+        padding-top: 12px;
+        padding-bottom: 12px;
+    }
+
+    .marketing-home__hero-overlay {
+        background:
+                linear-gradient(
+                        180deg,
+                        rgba(247, 247, 245, 0.84) 0%,
+                        rgba(247, 247, 245, 0.62) 38%,
+                        rgba(247, 247, 245, 0.28) 68%,
+                        rgba(247, 247, 245, 0.04) 100%
+                );
+    }
+
+    .marketing-home__brand img {
+        width: 150px;
+    }
+
+    .marketing-home__brand > span {
+        display: none;
+    }
+
+    .marketing-home__links {
+        order: 3;
+        display: flex;
+        width: 100%;
+        margin-left: 0;
+        gap: 4px;
+        padding: 5px 0 0;
+        overflow-x: auto;
+        scrollbar-width: none;
+    }
+
+    .marketing-home__links::-webkit-scrollbar {
+        display: none;
+    }
+
+    .marketing-home__links a,
+    .marketing-home__links button {
+        flex: 0 0 auto;
+        padding: 9px 10px;
+        font-size: 11px;
+        white-space: nowrap;
+    }
+
+    .marketing-home__actions {
+        margin-left: auto;
+        width: auto;
+        justify-content: flex-end;
+        flex-wrap: nowrap;
+    }
+
+    .marketing-home__actions .marketing-button--ghost {
+        display: none;
+    }
+
+    .marketing-home__hero {
+        padding-top: 48px;
+        padding-bottom: 72px;
+        min-height: auto;
+    }
+
+    .marketing-home__hero h1 {
+        font-size: 48px;
+        line-height: 0.96;
+    }
+
+    .marketing-home__hero-copy > p {
+        font-size: 16px;
+    }
+
+    .marketing-home__hero-actions {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .marketing-home__hero-actions .marketing-button {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .marketing-home__visual {
+        min-height: 390px;
+    }
+
+    .marketing-device {
+        border-width: 7px;
+        border-radius: 23px;
+        width: min(100%, 460px);
+    }
+
+    .marketing-device__body {
+        padding: 18px;
+    }
+
+    .marketing-score strong {
+        font-size: 45px;
+    }
+
+    .marketing-floating-card {
+        padding: 12px 14px;
+    }
+
+    .marketing-floating-card--top {
+        left: 0;
+        top: 14px;
+    }
+
+    .marketing-floating-card--bottom {
+        right: 0;
+        bottom: 16px;
+    }
+
+    .marketing-feature-grid,
+    .marketing-kpi-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .marketing-home__footer {
+        flex-wrap: wrap;
+    }
+
+    .marketing-home__footer small {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .intercom-widget {
+        right: 16px;
+        bottom: calc(16px + env(safe-area-inset-bottom));
+        z-index: 100;
+    }
+}
+
+@media (max-width: 420px) {
+    .marketing-home__brand img { width: 130px; }
+    .marketing-home__actions { gap: 6px; }
+    .marketing-home__actions .marketing-button--primary { padding: 10px 12px; font-size: 12px; }
+}

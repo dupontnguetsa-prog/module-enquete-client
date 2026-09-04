@@ -1,0 +1,11 @@
+export type UserProfile = { id:number; nom:string; email:string|null; identifiant:string; photoUrl:string|null; role?:string }
+export type QuestionType='NPS'|'SCALE'|'STARS'|'SINGLE_CHOICE'|'MULTIPLE_CHOICE'|'YES_NO'|'SHORT_TEXT'|'LONG_TEXT'
+export type SurveyStatus='Brouillon'|'Programmée'|'Active'|'En pause'|'Terminée'|'Archivée'
+export type TriggerKind='MANUAL'|'API_EVENT'|'PAGE_VISIT'|'TIME_ON_PAGE'|'AUDIENCE_ENTRY'|'DATE_TIME'
+export type ChannelKind='LINK'|'WIDGET'|'EMAIL'|'PUSH'|'BANNER'|'MOBILE'|'API'|'MANUAL'
+export type AudienceFilter={field:string;value:string}
+export type SurveyQuestion={id?:number;displayOrder?:number;type:QuestionType;title:string;description:string;required:boolean;min:number;max:number;minLabel:string;maxLabel:string;options:string[]}
+export type LogicRule={sourceIndex:number;kind:'BRANCH'|'DISPLAY';operator:string;value:string;targetIndex:number;action?:string}
+export type Survey={id:number;publicKey:string;title:string;description:string;goal:string;status:SurveyStatus;triggerKind:TriggerKind;triggerConfig:Record<string,unknown>;audienceMode:'DYNAMIC'|'FIXED';audienceName:string;audienceFilters:AudienceFilter[];channels:ChannelKind[];settings:Record<string,unknown>;createdAt:string;updatedAt:string;publishedAt:string|null;questions:SurveyQuestion[];logicRules:LogicRule[]}
+export type PageResponse<T>={content:T[];number:number;size:number;totalElements:number;totalPages:number;first:boolean;last:boolean}
+export type Analytics={views:number;responses:number;responseRate:number;completionRate:number;abandoned:number;questions:number;logicRules:number;series:{date:string;responses:number}[];questionAnalytics:{index:number;question:string;answered:number;average:number|null;distribution:Record<string,number>}[];segmentAnalytics?:{segment:string;responses:number;rate:number}[];channelAnalytics?:{channel:string;views:number;responses:number;rate:number}[]}

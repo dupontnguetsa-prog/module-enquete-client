@@ -1,0 +1,7 @@
+.git
+.gradle
+build
+bin
+enquete-client-frontend--/node_modules
+enquete-client-frontend--/dist
+*.iml
