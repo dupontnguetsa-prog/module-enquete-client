@@ -1,10 +1,9 @@
 FROM node:22-bookworm-slim AS build
 WORKDIR /app
 COPY package*.json ./
-RUN npm ci
+RUN npm ci --include=optional
 COPY . .
-RUN npm install --no-save --include=optional @rolldown/binding-linux-x64-gnu
-RUN npm install --no-save --include=optional lightningcss-linux-x64-gnu
+RUN npm install --no-save --package-lock=false --include=optional @rolldown/binding-linux-x64-gnu@1.2.6 lightningcss-linux-x64-gnu@1.33.0
 RUN npm run build
 
 FROM nginx:1.27-alpine
