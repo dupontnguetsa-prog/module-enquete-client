@@ -4,6 +4,7 @@ COPY package*.json ./
 RUN npm ci
 COPY . .
 RUN npm install --no-save --include=optional @rolldown/binding-linux-x64-gnu
+RUN npm install --no-save --include=optional lightningcss-linux-x64-gnu
 RUN npm run build
 
 FROM nginx:1.27-alpine
